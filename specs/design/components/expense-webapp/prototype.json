@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 3,
+  "name": "Expense Claims",
+  "entryScreen": "screen.my-claims",
+  "roles": [
+    { "id": "Employee", "name": "Employee" },
+    { "id": "Manager", "name": "Manager" },
+    { "id": "FinanceOfficer", "name": "Finance officer" }
+  ],
+  "states": [
+    { "id": "state.default", "name": "Default" },
+    { "id": "state.empty", "name": "Nothing to show" },
+    { "id": "state.validation-error", "name": "Validation errors" },
+    { "id": "state.conflict", "name": "Claim changed since opened" },
+    { "id": "state.failed", "name": "Expense service failed" }
+  ],
+  "screens": [
+    { "id": "screen.my-claims", "name": "My claims", "roleIds": ["Employee"] },
+    { "id": "screen.claim-editor", "name": "Claim editor", "roleIds": ["Employee"] },
+    { "id": "screen.my-claim-detail", "name": "My claim", "roleIds": ["Employee"] },
+    { "id": "screen.team-queue", "name": "Team claims", "roleIds": ["Manager"] },
+    { "id": "screen.team-claim-detail", "name": "Team claim", "roleIds": ["Manager"] },
+    { "id": "screen.reject-claim", "name": "Reject claim", "roleIds": ["Manager"] },
+    { "id": "screen.all-claims", "name": "All claims", "roleIds": ["FinanceOfficer"] },
+    { "id": "screen.finance-claim-detail", "name": "Claim detail", "roleIds": ["FinanceOfficer"] },
+    { "id": "screen.payroll-exports", "name": "Payroll export", "roleIds": ["FinanceOfficer"] },
+    { "id": "screen.account", "name": "Account", "roleIds": ["Employee", "Manager", "FinanceOfficer"] },
+    { "id": "screen.settings", "name": "Settings", "roleIds": ["Employee", "Manager", "FinanceOfficer"] },
+    { "id": "screen.signed-out", "name": "Signed out", "roleIds": ["Employee", "Manager", "FinanceOfficer"] }
+  ],
+  "flows": [
+    { "id": "flow.my-claims", "name": "My claims", "roleId": "Employee",
+      "screenIds": ["screen.my-claims", "screen.claim-editor", "screen.my-claim-detail"] },
+    { "id": "flow.approval-queue", "name": "Approval queue", "roleId": "Manager",
+      "screenIds": ["screen.team-queue", "screen.team-claim-detail", "screen.reject-claim"] },
+    { "id": "flow.claim-reporting", "name": "Claim reporting", "roleId": "FinanceOfficer",
+      "screenIds": ["screen.all-claims", "screen.finance-claim-detail"] },
+    { "id": "flow.payroll-export", "name": "Payroll export", "roleId": "FinanceOfficer",
+      "screenIds": ["screen.payroll-exports"] }
+  ]
+}
